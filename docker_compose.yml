@@ -99,7 +99,7 @@ services:
       IMMICH_DOMAIN: ${TS_HOSTNAME}.${TS_TAILNET_NAME}
     volumes:
       - type: bind
-        source: {$CADDY_FILE_PATH}
+        source: ${CADDY_FILE_PATH}
         target: /etc/caddy/Caddyfile
       - type: volume
         source: immich_caddy_certs
@@ -122,6 +122,7 @@ services:
       TS_HOSTNAME: ${TS_HOSTNAME} # Enter the hostname for your tailnet
       TS_AUTH_KEY: ${TS_AUTH_KEY}
       TS_EXTRA_ARGS: --advertise-tags=tag:${TS_HOSTNAME} # Tags are required when using OAuth client
+      TS_STATE_DIR: /var/lib/tailscale
     init: true
     restart: unless-stopped
     volumes:
